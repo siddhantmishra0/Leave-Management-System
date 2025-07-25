@@ -3,5 +3,4 @@ import Reason from "./Reason.jsx";
 import ReasonTextarea from "./ReasonTextarea.jsx";
 import SubmitButton from "./SubmitButton.jsx";
 import LeaveCard from "./LeaveCard.jsx";
-import Gemini from "../gemini.jsx";
-export { Calendar, Gemini, LeaveCard, ReasonTextarea, Reason, SubmitButton };
+export { Calendar, LeaveCard, ReasonTextarea, Reason, SubmitButton };
