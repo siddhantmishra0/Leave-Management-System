@@ -11,6 +11,20 @@ const Calendar = () => {
     new Date(new Date().getFullYear(), 11, 31)
   ); // Dec 31 of current year
 
+  // Generate weekends for current year
+  const generateWeekends = () => {
+    const weekends = [];
+    const date = new Date(minDate); // Start from today
+    const end = new Date(maxDate); // Until end of year
+
+    while (date <= end) {
+      if (date.getDay() === 0 || date.getDay() === 6) {
+        weekends.push(new Date(date));
+      }
+      date.setDate(date.getDate() + 1);
+    }
+    return weekends;
+  };
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -26,21 +40,6 @@ const Calendar = () => {
             const [year, month, day] = holiday.start.date.split("-");
             return new Date(year, month - 1, day); // Local time
           });
-
-        // Generate weekends for current year
-        const generateWeekends = () => {
-          const weekends = [];
-          const date = new Date(minDate); // Start from today
-          const end = new Date(maxDate); // Until end of year
-
-          while (date <= end) {
-            if (date.getDay() === 0 || date.getDay() === 6) {
-              weekends.push(new Date(date));
-            }
-            date.setDate(date.getDate() + 1);
-          }
-          return weekends;
-        };
 
         // Combine holidays, weekends, and dates before today
         const pastDates = [];
@@ -80,7 +79,7 @@ const Calendar = () => {
   }, [minDate, maxDate]);
 
   return (
-    <div className="p-6">
+    <div>
       <h2 className="text-xl font-bold mb-4">Select a Valid Working Date</h2>
       <DatePicker
         selected={startDate}
